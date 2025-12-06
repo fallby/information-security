@@ -1,1 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шифр Цезаря</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Шифр Цезаря</h1>
+        <div class="sections-container">
+            <section class="section-encrypt">
+                <h2>Шифрование текста</h2>
+                <p>Введите текст для шифрования:</p>
+
+                <div class="form-group">
+                    <textarea id="text-encrypt"></textarea>
+                </div>
+
+                <button id="encrypt-button"> Зашифровать текст </button>
+
+                <div class="encryption-result">
+                    <h4>Результат шифрования:</h4>
+                    <div id="encrypted-output" class="output"></div>
+                    <div class="key-section">
+                        <div class="key-label"><b>Полученный ключ:</b></div>
+                        <div id="encrypt-key-display" class="key-value"></div>
+                    </div>
+                </div>
+
+            </section>
+
+            <section class="section-decrypt">
+                <h2>Расшифровка текста</h2>
+                <p>Введите текст для расшифровки:</p>
+
+                <div class="form-group">
+                    <textarea id="text-decrypt" placeholder=""></textarea>
+                    <p>Введите ключ:</p>
+                    <textarea id="key-input" placeholder=""></textarea>
+                </div>
+
+                <button id="decrypt-button"> Расшифровать текст </button>
+
+                <div class="decryption-result">
+                    <h4>Результат расшифровки:</h4>
+                    <div id="decrypted-output" class="output"></div>
+                    <div class="key-section">
+                        <div class="key-label"><b> Использованный ключ:</b></div>
+                        <div id="decrypt-key-display" class="key-value"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="CaesarCipher.js"></script>
+</body>
+
+</html>
