@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шифр Вернама</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Шифр Вернама</h1>
+        <div class="sections-container">
+            <section class="section-encrypt">
+                <h2>Шифрование текста</h2>
+                <p>Введите текст для шифрования (символы и латинские буквы):</p>
+
+                <div class="form-group">
+                    <textarea id="text-encrypt"></textarea>
+                </div>
+
+                <button id="encrypt-button"> Зашифровать текст </button>
+
+                <div class="encryption-result">
+                    <h4>Результат шифрования:</h4>
+                    <div id="encrypted-output-symbol" class="output"></div>
+                    <h4>Результат шифрования (десятичный код):</h4>
+                    <div id="encrypted-output-dec" class="output"></div>
+                    <div class="key-section">
+                        <div class="key-label"><b>Полученный ключ:</b></div>
+                        <div id="encrypt-key-display" class="key-value"></div>
+                        <div class="key-label"><b>Полученный ключ (десятичный код):</b></div>
+                        <div id="encrypt-key-dec-display" class="key-value"></div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </div>
+
+    <script src="asciiMap.js"></script>
+    <script src="VernamCipher.js"></script>
+</body>
+
+</html>
