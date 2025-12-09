@@ -12,26 +12,32 @@
     <div class="container">
         <h1>Шифр Виженера</h1>
         <div class="sections-container">
-            <section class="section-encrypt">
-                <h2>Шифрование текста</h2>
-                <p>Введите текст для шифрования:</p>
+             <section class="main-section">
+            <p>Введите текст для обработки:</p>
+            <div class="form-group">
+                <textarea id="text-input"></textarea>
+            </div>
 
-                <div class="form-group">
-                    <textarea id="text-encrypt"></textarea>
-                </div>
+            <div class="key-input-group">
+                <p>Введите ключ (при расшифровке - обязательно; при зашифровке, если не ввести ключ, он выберется случайным образом):</p>
+                <input type="string" id="key-input">
+            </div>
 
-                <button id="encrypt-button"> Зашифровать текст </button>
+            <div class="button-group">
+                <button id="encrypt-button">Зашифровать</button>
+                <button id="decrypt-button">Расшифровать</button>
+            </div>
 
-                <div class="encryption-result">
-                    <h4>Результат шифрования:</h4>
-                    <div id="encrypted-output" class="output"></div>
-                    <div class="key-section">
-                        <div class="key-label"><b>Полученный ключ:</b></div>
-                        <div id="encrypt-key-display" class="key-value"></div>
-                    </div>
-                </div>
+            <div class="result-section">
+                <h4>Результат:</h4>
+                <div id="result-output" class="output"></div>
+            </div>
 
-            </section>
+            <div class="key-section">
+                <div class="key-label"><b>Ключ:</b></div>
+                <div id="key-output" class="key-value"></div>
+            </div>
+        </section>
         </div>
     </div>
 
