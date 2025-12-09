@@ -1,57 +1,59 @@
 const alphabet = ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я'];
 
-const hackedTextResult = document.getElementById('encrypted-output');
-const KResult = document.getElementById('encrypt-key-display');
+const textInput = document.getElementById('text-input');
+const resultOutput = document.getElementById('result-output');
+const keyInput = document.getElementById('key-input');
+const keyOutput = document.getElementById('key-output');
+
 const encryptButton = document.getElementById("encrypt-button");
+const decryptButton = document.getElementById("decrypt-button");
+const hackButton = document.getElementById("hack-button");
 
 function encryptCaesarCipher() {
 
-    let originalText = document.getElementById('text-encrypt').value;
+    let originalText = textInput.value.toUpperCase();;
     let k = Math.floor(Math.random() * alphabet.length) + 1;
-    let hackedText = [];
-    originalText = originalText.toUpperCase();
+    let encryptedText = [];
 
-    for (let i = 0; i < originalText.length; i++) { 
+    for (let i = 0; i < originalText.length; i++) {
         currentLetter = originalText[i];
         if (currentLetter === ' ') {
-            hackedText.push(' ')
+            encryptedText.push(' ')
             continue;
         }
 
         let indexOfLetter = alphabet.indexOf(currentLetter);
 
         if (indexOfLetter === -1) {
-            hackedText.push(currentLetter);
+            encryptedText.push(currentLetter);
             continue;
         }
 
         let newIndex = (indexOfLetter + k) % alphabet.length;
-        
-        hackedText.push(alphabet[newIndex]);
-    } 
 
-    let result = hackedText.join("");
-    
-    hackedTextResult.innerHTML = result;
-    KResult.innerHTML = k;
+        encryptedText.push(alphabet[newIndex]);
+    }
+
+    let result = encryptedText.join("");
+
+    resultOutput.innerHTML = result;
+    keyOutput.innerHTML = k;
 }
 
-encryptButton.addEventListener('click', encryptCaesarCipher);
-
-
-const decryptedTextResult = document.getElementById('decrypted-output'); 
-const KUsed = document.getElementById('decrypt-key-display');
-const decryptButton = document.getElementById("decrypt-button");
 
 function decryptCaesarCipher() {
 
-    let originalText = document.getElementById('text-decrypt').value;
-    let k = document.getElementById('key-input').value;
-    k = Number(k);
+    const originalText = textInput.value.toUpperCase();
+    const k = parseInt(keyInput.value);
     let decryptedText = [];
-    originalText = originalText.toUpperCase();
 
-    for (let i = 0; i < originalText.length; i++) { 
+    if (isNaN(k) || k < 1 || k > 32) {
+        resultOutput.textContent = 'Введите ключ от 1 до 32';
+        keyDisplay.textContent = '';
+        return;
+    }
+
+    for (let i = 0; i < originalText.length; i++) {
         let currentLetter = originalText[i];
 
         if (currentLetter === ' ') {
@@ -68,14 +70,48 @@ function decryptCaesarCipher() {
 
         let newIndex = (indexOfLetter - k + alphabet.length) % alphabet.length;
         decryptedText.push(alphabet[newIndex]);
-    } 
+    }
 
     let result = decryptedText.join("");
-    decryptedTextResult.innerHTML = result;
-    KUsed.innerHTML = k;
+    resultOutput.innerHTML = result;
+    keyOutput.innerHTML = k;
 }
 
+
+function hackCaesarCipher() {
+
+    const originalText = textInput.value.toUpperCase();
+    let result = '';
+
+    for (let k = 1; k <= alphabet.length; k++) {
+        let hackedText = [];
+        for (let i = 0; i < originalText.length; i++) {
+            const currentLetter = originalText[i];
+            if (currentLetter === ' ') {
+                hackedText.push(' ');
+                continue;
+            }
+
+            const indexOfLetter = alphabet.indexOf(currentLetter);
+
+            if (indexOfLetter === -1) {
+                hackedText.push(currentLetter);
+                continue;
+            }
+
+            const newIndex = (indexOfLetter - k + alphabet.length) % alphabet.length;
+            hackedText.push(alphabet[newIndex]);
+        }
+
+        result += `Ключ ${k}: ${hackedText.join('').toLowerCase()}<br>`;
+    }
+
+    resultOutput.innerHTML = result;
+}
+
+encryptButton.addEventListener('click', encryptCaesarCipher);
 decryptButton.addEventListener('click', decryptCaesarCipher);
+hackButton.addEventListener('click', hackCaesarCipher);
 
 // Примеры для расшифровки
 // 1. Ефзп тулезх!
