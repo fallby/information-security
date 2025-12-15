@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шифр Вернама</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Шифр Вернама</h1>
+        <div class="sections-container">
+            <div class="sections-container">
+                <section class="main-section">
+                    <p>Введите текст для обработки (символы ascii):</p>
+                    <div class="form-group">
+                        <textarea id="text-input"></textarea>
+                    </div>
+
+                    <div class="key-input-group">
+                        <p>Введите ключ (при расшифровке - обязательно; при зашифровке, если не ввести ключ, он
+                            выберется случайным образом):</p>
+                        <input type="string" id="key-input">
+                    </div>
+
+                    <div class="button-group">
+                        <button id="encrypt-button">Зашифровать</button>
+                        <button id="decrypt-button">Расшифровать</button>
+                    </div>
+
+                    <div class="result-section">
+                        <h4>Результат:</h4>
+                        <div id="result-output" class="output"></div>
+                    <h4>Результат шифрования (десятичный код):</h4>
+                    <div id="result-output-dec" class="output"></div>
+                    <div class="key-section">
+                        <div class="key-label"><b>Полученный ключ:</b></div>
+                        <div id="key-output" class="key-value"></div>
+                        <div class="key-label"><b>Полученный ключ (десятичный код):</b></div>
+                        <div id="key-output-dec" class="key-value"></div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="asciiMap.js"></script>
+    <script src="VernamCipher.js"></script>
+</body>
+
+</html>
