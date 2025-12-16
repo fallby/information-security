@@ -3,10 +3,11 @@ const resultOutput = document.getElementById('result-output');
 const resultOutputBin = document.getElementById('result-output-bin');
 const resultOutputDec = document.getElementById('result-output-dec');
 const keyInput = document.getElementById('key-input');
+const keyOutput = document.getElementById('key-output');
+const keyOutputDec = document.getElementById('key-output-dec');
 
 const encryptButton = document.getElementById("encrypt-button");
 const decryptButton = document.getElementById("decrypt-button");
-
 
 function encryptDES() {
     let originalText = textInput.value;
@@ -14,6 +15,8 @@ function encryptDES() {
     let originalTextBit = [];
     let keyBin = [];
     let keyDec = [];
+    let keyDec2 = [];
+    let keyChar = [];
     let keyBinPC1 = [];
 
     // проверка на длину введенного текста
@@ -58,6 +61,7 @@ function encryptDES() {
         for (let i = 0; i < 8; i++) {
             let randomKey = Math.floor(Math.random() * asciiMap.size);
             let bin = decToBin(randomKey);
+            keyDec2.push(randomKey);
             keyDec.push(bin);
             keyChar.push(asciiMap.get(randomKey));
         }
@@ -73,8 +77,10 @@ function encryptDES() {
                     resultOutput.innerHTML = `Символ ${keyWord[i]} не поддерживается кодировкой Ascii`;
                     return;
                 }
+                keyDec2.push(userKey);
                 let bin = decToBin(userKey);
                 keyDec.push(bin);
+                keyChar.push(asciiMap.get(userKey));
             }
         }
     }
@@ -190,6 +196,7 @@ function encryptDES() {
     let resultDec = "";
     let resultBin = "";
     let result = "";
+    let k = keyChar.join("");;
     for (let i = 0; i < textBinIPInversion.length; i++) {
         if (i % 8 == 0) {
             if (i > 0) {
@@ -210,6 +217,9 @@ function encryptDES() {
     resultOutputDec.innerHTML = resultDec;
     resultOutput.innerHTML = result;
 
+    keyOutput.innerHTML = k;
+    keyOutputDec.innerHTML = keyDec2;
+
 }
 
 function decryptDES() {
@@ -218,7 +228,9 @@ function decryptDES() {
     let originalTextBit = [];
     let decryptedTextResult = [];
     let keyBin = [];
+    let keyChar = [];
     let keyDec = [];
+    let keyDec2 = [];
     let keyBinPC1 = [];
 
     // проверка на длину введенного текста
@@ -258,6 +270,8 @@ function decryptDES() {
                     return;
                 }
                 let bin = decToBin(userKey);
+                keyChar.push(asciiMap.get(userKey));
+                keyDec2.push(userKey);
                 keyDec.push(bin);
             }
         }
@@ -399,7 +413,7 @@ function decryptDES() {
     let resultDec = "";
     let resultBin = "";
     let result = "";
-
+    let k = keyChar.join("");;
     for (let i = 0; i < decryptedTextResult.length; i++) {
         if (i % 8 == 0) {
             if (i > 0) {
@@ -421,6 +435,8 @@ function decryptDES() {
     resultOutputDec.innerHTML = resultDec;
     resultOutput.innerHTML = result;
 
+    keyOutput.innerHTML = k;
+    keyOutputDec.innerHTML = keyDec2;
 }
 
 function decToBin(dec) {
