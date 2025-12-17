@@ -87,12 +87,12 @@ function encryptRSA() {
 }
 
 function decryptRSA() {
-    const encryptedText = textInput.value.trim();
+    const originalText = textInput.value.trim();
     let openKey = [];
     let closeKey = [];
 
-    if (!encryptedText) {
-        resultOutput.innerHTML = "Введите зашифрованный текст (массив чисел)";
+    if (originalText == "") {
+        resultOutput.innerHTML = "Введите текст";
         return;
     }
 
@@ -148,7 +148,7 @@ function decryptRSA() {
     openKey = [e, N];
     closeKey = [d, N];
 
-    const encryptedBlocks = encryptedText.split(',').map(block => {
+    const encryptedBlocks = originalText.split(',').map(block => {
         const trimmed = block.trim();
         return trimmed ? Number(trimmed) : null;
     }).filter(block => block !== null);
