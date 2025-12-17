@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шифр RSA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Шифр RSA</h1>
+        <div class="sections-container">
+             <section class="main-section">
+            <p>Введите текст для обработки (при расшифровке - числа):</p>
+            <div class="form-group">
+                <textarea id="text-input"></textarea>
+            </div>
+
+            <div class="key-input-group">
+                <p>Введите p и q:</p>
+                <p>p:</p>
+                <input type="string" id="key-input-open">
+                <p>q:</p>
+                <input type="string" id="key-input-close">
+            </div>
+
+            <div class="button-group">
+                <button id="encrypt-button">Зашифровать</button>
+                <button id="decrypt-button">Расшифровать</button>
+            </div>
+
+            <div class="result-section">
+                <h4>Результат:</h4>
+                <div id="result-output" class="output"></div>
+            </div>
+
+            <div class="key-section">
+                <div class="key-label"><b>Открытый ключ:</b></div>
+                <div id="key-output-open" class="key-value"></div>
+                <div class="key-label"><b>Закрытый ключ:</b></div>
+                <div id="key-output-close" class="key-value"></div>
+            </div>
+        </section>
+        </div>
+    </div>
+
+    <script src="RSA.js"></script>
+</body>
+
+</html>
